@@ -1,12 +1,17 @@
 package sample;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by nirbelelti on 07/09/15.
  */
 public class Fields {
 
 
-private Integer fieldId = 0;
+    private Integer fieldId = 0;
+
+    private    Map<Integer, String> move = new HashMap<Integer, String>();
 
     public Integer getFieldId() {
         return fieldId;
@@ -15,6 +20,8 @@ private Integer fieldId = 0;
     public void setFieldId(Integer fieldId) {
         this.fieldId = fieldId;
     }
+
+
 
 
 }

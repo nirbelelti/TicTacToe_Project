@@ -64,6 +64,8 @@ Fields  field = new Fields();
 
 
 
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -78,10 +80,10 @@ Fields  field = new Fields();
 
         field.setFieldId(1);
         v1h1.setText(play.getPleyer());
-        move.put( field.getFieldId(),play.getPleyer());
+        move.put(field.getFieldId(), play.getPleyer());
 
         System.out.println(move);
-
+        refresh();
         isAWinner();
 
     }
@@ -91,6 +93,7 @@ Fields  field = new Fields();
         v1h2.setText(play.getPleyer());
         move.put(field.getFieldId(), play.getPleyer());
         System.out.println(move);
+        refresh();
         isAWinner();
 
 
@@ -99,6 +102,7 @@ Fields  field = new Fields();
         field.setFieldId(3);
         v1h3.setText(play.getPleyer());
         move.put(field.getFieldId(), play.getPleyer());
+        refresh();
         isAWinner();
 
     }
@@ -181,6 +185,12 @@ Fields  field = new Fields();
             v3h1.setText(move.get(7));
             v3h2.setText(move.get(8));
             v3h3.setText(move.get(9));
+
+        move.put(field.getFieldId(), play.getPleyer());
+
+        isAWinner();
+        System.out.println(move);
+
         System.out.println("Load game from file");
 
 
@@ -198,6 +208,7 @@ Fields  field = new Fields();
         v3h3.setText("");
         move.clear();
         msg.setText("");
+
         
     }
     public void saveToFile(ActionEvent event) {
@@ -219,7 +230,7 @@ Fields  field = new Fields();
 
             if (move.get(1).equals(move.get(2)) && move.get(1).equals(move.get(3))) {
 
-            msg.setText("We Got a Winner Player " + move.get(1) + " Won");
+                msg.setText("We Got a Winner Player " + move.get(1) + " Won");
 
             }
         }
@@ -227,10 +238,10 @@ Fields  field = new Fields();
 
             if (move.get(4).equals(move.get(5)) && move.get(4).equals(move.get(6))) {
 
-                msg.setText("We Got a Winner Player " + move.get(5)+" Won");
+                msg.setText("We Got a Winner Player " + move.get(5) + " Won");
 
             }
-            
+
         }
 
         if (move.containsKey(7) && move.containsKey(8) && move.containsKey(9)) {
@@ -244,36 +255,47 @@ Fields  field = new Fields();
 
             if (move.get(1).equals(move.get(5)) && move.get(1).equals(move.get(9))) {
 
-                msg.setText("We Got a Winner Player " + move.get(1)+" Won");
+                msg.setText("We Got a Winner Player " + move.get(1) + " Won");
             }
         }
         if (move.containsKey(3) && move.containsKey(5) && move.containsKey(7)) {
 
             if (move.get(7).equals(move.get(3)) && move.get(7).equals(move.get(5))) {
 
-                msg.setText("We Got a Winner Player " + move.get(3)+" Won");
+                msg.setText("We Got a Winner Player " + move.get(3) + " Won");
             }
         }
         if (move.containsKey(1) && move.containsKey(4) && move.containsKey(7)) {
 
             if (move.get(7).equals(move.get(4)) && move.get(7).equals(move.get(1))) {
 
-                msg.setText("We Got a Winner Player " + move.get(1)+" Won");
+                msg.setText("We Got a Winner Player " + move.get(1) + " Won");
             }
         }
         if (move.containsKey(2) && move.containsKey(5) && move.containsKey(8)) {
 
             if (move.get(2).equals(move.get(8)) && move.get(8).equals(move.get(5))) {
 
-                msg.setText("We Got a Winner Player " + move.get(2)+" Won");
+                msg.setText("We Got a Winner Player " + move.get(2) + " Won");
             }
         }
         if (move.containsKey(3) && move.containsKey(6) && move.containsKey(9)) {
 
             if (move.get(3).equals(move.get(6)) && move.get(3).equals(move.get(9))) {
 
-                msg.setText("We Got a Winner Player " + move.get(3)+" Won");
+                msg.setText("We Got a Winner Player " + move.get(3) + " Won");
             }
         }
     }
-}
+
+    public void refresh(){
+
+        for (int i=0; i>=move.size();i++) {
+            move.put(field.getFieldId(), play.getPleyer());
+            System.out.println("now hash" + move);
+        }
+
+    }
+
+    }
+
