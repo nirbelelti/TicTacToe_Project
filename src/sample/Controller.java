@@ -290,9 +290,18 @@ Fields  field = new Fields();
 
     public void refresh(){
 
-        for (int i=0; i>=move.size();i++) {
-            move.put(field.getFieldId(), play.getPleyer());
-            System.out.println("now hash" + move);
+       if(!move.isEmpty()){
+
+           move.put(1,v1h1.getText());
+           move.put(2,v1h2.getText());
+           move.put(3,v1h3.getText());
+        //   move.put(4,v2h1.getText());
+       //    move.put(5,v2h2.getText());
+       //    move.put(6,v2h3.getText());
+        //   move.put(7,v3h1.getText());
+         //  move.put(8,v3h2.getText());
+         //  move.put(9,v3h3.getText());
+
         }
 
     }
