@@ -79,8 +79,8 @@ Fields  field = new Fields();
     public void setMove1(ActionEvent event){
 
         field.setFieldId(1);
-        v1h1.setText(play.getPleyer());
-        move.put(field.getFieldId(), play.getPleyer());
+        v1h1.setText(play.getPlayer());
+        move.put(field.getFieldId(), play.getPlayer());
 
         System.out.println(move);
         refresh();
@@ -90,8 +90,8 @@ Fields  field = new Fields();
     public void setMove2(ActionEvent event){
 
         field.setFieldId(2);
-        v1h2.setText(play.getPleyer());
-        move.put(field.getFieldId(), play.getPleyer());
+        v1h2.setText(play.getPlayer());
+        move.put(field.getFieldId(), play.getPlayer());
         System.out.println(move);
         refresh();
         isAWinner();
@@ -100,64 +100,64 @@ Fields  field = new Fields();
     }
     public void setMove3(ActionEvent event){
         field.setFieldId(3);
-        v1h3.setText(play.getPleyer());
-        move.put(field.getFieldId(), play.getPleyer());
+        v1h3.setText(play.getPlayer());
+        move.put(field.getFieldId(), play.getPlayer());
         refresh();
         isAWinner();
 
     }
     public void setMove4(ActionEvent event){
         field.setFieldId(4);
-        v2h1.setText(play.getPleyer());
-        move.put(field.getFieldId(), play.getPleyer());
+        v2h1.setText(play.getPlayer());
+        move.put(field.getFieldId(), play.getPlayer());
         isAWinner();
 
     }
     public void setMove5(ActionEvent event){
         field.setFieldId(5);
-        v2h2.setText(play.getPleyer());
-        move.put(field.getFieldId(), play.getPleyer());
+        v2h2.setText(play.getPlayer());
+        move.put(field.getFieldId(), play.getPlayer());
         isAWinner();
 
     }
     public void setMove6(ActionEvent event){
         field.setFieldId(6);
-        v2h3.setText(play.getPleyer());
-        move.put(field.getFieldId(), play.getPleyer());
+        v2h3.setText(play.getPlayer());
+        move.put(field.getFieldId(), play.getPlayer());
         isAWinner();
 
     }
     public void setMove7(ActionEvent event){
         field.setFieldId(7);
-        v3h1.setText(play.getPleyer());
-        move.put(field.getFieldId(), play.getPleyer());
+        v3h1.setText(play.getPlayer());
+        move.put(field.getFieldId(), play.getPlayer());
         isAWinner();
 
     }
     public void setMove8(ActionEvent event){
         field.setFieldId(8);
-        v3h2.setText(play.getPleyer());
-        move.put(field.getFieldId(), play.getPleyer());
+        v3h2.setText(play.getPlayer());
+        move.put(field.getFieldId(), play.getPlayer());
         isAWinner();
 
     }
     public void setMove9(ActionEvent event){
         field.setFieldId(9);
-        v3h3.setText(play.getPleyer());
-        move.put(field.getFieldId(), play.getPleyer());
+        v3h3.setText(play.getPlayer());
+        move.put(field.getFieldId(), play.getPlayer());
         isAWinner();
 
     }
     public void setPlayer1(ActionEvent event) {
 
 
-        play.setPleyer("X");
+        play.setPlayer("X");
 
     }
 
     public void setPlayer2(ActionEvent event){
 
-        play.setPleyer("O");
+        play.setPlayer("O");
 
     }
     public void uploadgame(ActionEvent event) {
@@ -186,7 +186,7 @@ Fields  field = new Fields();
             v3h2.setText(move.get(8));
             v3h3.setText(move.get(9));
 
-        move.put(field.getFieldId(), play.getPleyer());
+        move.put(field.getFieldId(), play.getPlayer());
 
         isAWinner();
         System.out.println(move);
@@ -290,18 +290,9 @@ Fields  field = new Fields();
 
     public void refresh(){
 
-       if(!move.isEmpty()){
-
-           move.put(1,v1h1.getText());
-           move.put(2,v1h2.getText());
-           move.put(3,v1h3.getText());
-        //   move.put(4,v2h1.getText());
-       //    move.put(5,v2h2.getText());
-       //    move.put(6,v2h3.getText());
-        //   move.put(7,v3h1.getText());
-         //  move.put(8,v3h2.getText());
-         //  move.put(9,v3h3.getText());
-
+        for (int i=0; i>=move.size();i++) {
+            move.put(field.getFieldId(), play.getPlayer());
+            System.out.println("now hash" + move);
         }
 
     }

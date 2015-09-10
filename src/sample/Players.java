@@ -5,21 +5,21 @@ package sample;
  */
 public class Players {
 
-   private String pleyer = "";
+   private String player = "";
 
 
-    public String getPleyer() {
-        return pleyer;
+    public String getPlayer() {
+        return player;
     }
 
-    public void setPleyer(String pleyer) {
-        this.pleyer = pleyer;
+    public void setPlayer(String player) {
+        this.player = player;
     }
 
     @Override
     public String toString() {
         return "Players{" +
-                "pleyer='" + pleyer + '\'' +
+                "player='" + player + '\'' +
                 '}';
     }
 }

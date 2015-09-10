@@ -1,9 +1,9 @@
-package sample;
+/*package sample;
 
 /**
  * Created by Pawel on 2015-09-10.
  */
-import java.io.IOException;
+/*import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -62,3 +62,4 @@ public class NetworkConnection {
 
     }
 }
+*/
