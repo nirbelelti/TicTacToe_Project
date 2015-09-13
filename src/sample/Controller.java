@@ -60,7 +60,11 @@ Fields  field = new Fields();
     Map<Integer, String> move = new HashMap<Integer, String>();
 
 
+  // Added variable sendmove which sends the information about the made move so fieldId to class Network connection
+  // Converted the Integer value of fieldId to String so you could send it. Check class NetworkConnection
 
+
+     String sendmove =  field.toString();
 
 
 

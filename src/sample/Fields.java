@@ -21,10 +21,18 @@ public class Fields {
         this.fieldId = fieldId;
     }
 
-
-
-
+    @Override
+    public String toString() {
+        return "Fields{" +
+                "fieldId=" + fieldId +
+                '}';
+    }
 }
+
+
+
+
+
 
 
 
