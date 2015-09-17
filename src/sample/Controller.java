@@ -17,8 +17,7 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
 
-    @FXML
-    private Label playerMark1;
+
     @FXML
     private Button v1h1;
     @FXML
@@ -44,30 +43,28 @@ public class Controller implements Initializable {
     @FXML
     private Button resetBtn;
     @FXML
-    private  Button upload;
+    private Button upload;
     @FXML
-    private  Button save;
+    private Button save;
     @FXML
     private Label msg;
 
 
+    String playerDefault = " ";
 
-String playerDefault = " ";
-
-Players play = new Players();
-Fields  field = new Fields();
+    Players play = new Players();
+    Fields field = new Fields();
+    Sender snt = new Sender();
+    Reciver rcv = new Reciver();
 
     Map<Integer, String> move = new HashMap<Integer, String>();
 
 
-  // Added variable sendmove which sends the information about the made move so fieldId to class Network connection
-  // Converted the Integer value of fieldId to String so you could send it. Check class NetworkConnection
+    // Added variable sendmove which sends the information about the made move so fieldId to class Network connection
+    // Converted the Integer value of fieldId to String so you could send it. Check class NetworkConnection
 
 
-     String sendmove =  field.toString();
-
-
-
+    String sendmove = field.toString();
 
 
     @Override
@@ -77,93 +74,191 @@ Fields  field = new Fields();
     }
 
 
-
-
-
-    public void setMove1(ActionEvent event){
+    public void setMove1(ActionEvent event) {
 
         field.setFieldId(1);
         v1h1.setText(play.getPlayer());
         move.put(field.getFieldId(), play.getPlayer());
 
         System.out.println(move);
+
+
+        try {
+            snt.sent(field.getFieldId(), play.getPlayer());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         refresh();
         isAWinner();
+        switchPlayers();
 
     }
-    public void setMove2(ActionEvent event){
+
+    public void setMove2(ActionEvent event) {
 
         field.setFieldId(2);
         v1h2.setText(play.getPlayer());
         move.put(field.getFieldId(), play.getPlayer());
         System.out.println(move);
+
+        try {
+            snt.sent(field.getFieldId(), play.getPlayer());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         refresh();
         isAWinner();
+        switchPlayers();
 
 
     }
-    public void setMove3(ActionEvent event){
+
+    public void setMove3(ActionEvent event) {
         field.setFieldId(3);
         v1h3.setText(play.getPlayer());
         move.put(field.getFieldId(), play.getPlayer());
+        try {
+            snt.sent(field.getFieldId(), play.getPlayer());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         refresh();
         isAWinner();
+        switchPlayers();
 
     }
-    public void setMove4(ActionEvent event){
+
+    public void setMove4(ActionEvent event) {
         field.setFieldId(4);
         v2h1.setText(play.getPlayer());
         move.put(field.getFieldId(), play.getPlayer());
-        isAWinner();
+        try {
+            snt.sent(field.getFieldId(), play.getPlayer());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
+        refresh();
+        isAWinner();
+        switchPlayers();
     }
-    public void setMove5(ActionEvent event){
+
+    public void setMove5(ActionEvent event) {
         field.setFieldId(5);
         v2h2.setText(play.getPlayer());
         move.put(field.getFieldId(), play.getPlayer());
+        try {
+            snt.sent(field.getFieldId(), play.getPlayer());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        refresh();
         isAWinner();
+        switchPlayers();
 
     }
-    public void setMove6(ActionEvent event){
+
+    public void setMove6(ActionEvent event) {
         field.setFieldId(6);
         v2h3.setText(play.getPlayer());
         move.put(field.getFieldId(), play.getPlayer());
-        isAWinner();
+        try {
+            snt.sent(field.getFieldId(), play.getPlayer());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
+        refresh();
+        isAWinner();
+        switchPlayers();
     }
-    public void setMove7(ActionEvent event){
+
+    public void setMove7(ActionEvent event) {
         field.setFieldId(7);
         v3h1.setText(play.getPlayer());
         move.put(field.getFieldId(), play.getPlayer());
-        isAWinner();
+        try {
+            snt.sent(field.getFieldId(), play.getPlayer());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
+        refresh();
+        isAWinner();
+        switchPlayers();
     }
-    public void setMove8(ActionEvent event){
+
+    public void setMove8(ActionEvent event) {
         field.setFieldId(8);
         v3h2.setText(play.getPlayer());
         move.put(field.getFieldId(), play.getPlayer());
-        isAWinner();
+        try {
+            snt.sent(field.getFieldId(), play.getPlayer());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
+        refresh();
+        isAWinner();
+        switchPlayers();
     }
-    public void setMove9(ActionEvent event){
+
+    public void setMove9(ActionEvent event) {
         field.setFieldId(9);
         v3h3.setText(play.getPlayer());
         move.put(field.getFieldId(), play.getPlayer());
+        try {
+            snt.sent(field.getFieldId(), play.getPlayer());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        refresh();
         isAWinner();
+        switchPlayers();
+
 
     }
+
     public void setPlayer1(ActionEvent event) {
 
 
         play.setPlayer("X");
 
+       // player2CL.fire();
+
+
     }
 
-    public void setPlayer2(ActionEvent event){
+    public void setPlayer2(ActionEvent event) {
 
         play.setPlayer("O");
 
     }
+
+    public void switchPlayers() {
+        if (play.getPlayer().equals("X")) {
+
+
+            player1CL.fire();
+            player2CL.fire();
+
+        }
+        else
+        if (play.getPlayer().equals("O")) {
+
+
+            player2CL.fire();
+            player1CL.fire();
+
+        }
+
+    }
+
     public void uploadgame(ActionEvent event) {
 
         HashMap<Integer, String> move = null;
@@ -192,7 +287,7 @@ Fields  field = new Fields();
 
         move.put(field.getFieldId(), play.getPlayer());
 
-        isAWinner();
+
         System.out.println(move);
 
         System.out.println("Load game from file");
@@ -230,76 +325,79 @@ Fields  field = new Fields();
         }
     }
     public void isAWinner() {
-        if (move.containsKey(1) && move.containsKey(2) && move.containsKey(3)) {
 
+        if (!move.get(1).equals("")) {
             if (move.get(1).equals(move.get(2)) && move.get(1).equals(move.get(3))) {
 
+
                 msg.setText("We Got a Winner Player " + move.get(1) + " Won");
-
             }
-        }
-        if (move.containsKey(4) && move.containsKey(5) && move.containsKey(6)) {
-
+        }  if (!move.get(4).equals("")) {
             if (move.get(4).equals(move.get(5)) && move.get(4).equals(move.get(6))) {
 
-                msg.setText("We Got a Winner Player " + move.get(5) + " Won");
 
+                msg.setText("We Got a Winner Player " + move.get(4) + " Won");
             }
-
-        }
-
-        if (move.containsKey(7) && move.containsKey(8) && move.containsKey(9)) {
-
+        }  if (!move.get(7).equals("")) {
             if (move.get(7).equals(move.get(8)) && move.get(7).equals(move.get(9))) {
+
 
                 msg.setText("We Got a Winner Player " + move.get(7) + " Won");
             }
-        }
-        if (move.containsKey(1) && move.containsKey(5) && move.containsKey(9)) {
+        }  if (!move.get(1).equals("")) {
+            if (move.get(1).equals(move.get(5)) && move.get(5).equals(move.get(9))) {
 
-            if (move.get(1).equals(move.get(5)) && move.get(1).equals(move.get(9))) {
 
                 msg.setText("We Got a Winner Player " + move.get(1) + " Won");
             }
-        }
-        if (move.containsKey(3) && move.containsKey(5) && move.containsKey(7)) {
+        }  if (!move.get(3).equals("")) {
+            if (move.get(3).equals(move.get(5)) && move.get(5).equals(move.get(7))) {
 
-            if (move.get(7).equals(move.get(3)) && move.get(7).equals(move.get(5))) {
 
                 msg.setText("We Got a Winner Player " + move.get(3) + " Won");
             }
-        }
-        if (move.containsKey(1) && move.containsKey(4) && move.containsKey(7)) {
+        }  if (!move.get(1).equals("")) {
+            if (move.get(1).equals(move.get(4)) && move.get(4).equals(move.get(7))) {
 
-            if (move.get(7).equals(move.get(4)) && move.get(7).equals(move.get(1))) {
 
-                msg.setText("We Got a Winner Player " + move.get(1) + " Won");
+                msg.setText("We Got a Winner Player " + move.get(4) + " Won");
             }
-        }
-        if (move.containsKey(2) && move.containsKey(5) && move.containsKey(8)) {
+        }  if (!move.get(2).equals("")) {
+            if (move.get(2).equals(move.get(5)) && move.get(5).equals(move.get(8))) {
 
-            if (move.get(2).equals(move.get(8)) && move.get(8).equals(move.get(5))) {
 
                 msg.setText("We Got a Winner Player " + move.get(2) + " Won");
             }
-        }
-        if (move.containsKey(3) && move.containsKey(6) && move.containsKey(9)) {
+        } if (!move.get(3).equals("")) {
+            if (move.get(3).equals(move.get(6)) && move.get(6).equals(move.get(9))) {
 
-            if (move.get(3).equals(move.get(6)) && move.get(3).equals(move.get(9))) {
 
                 msg.setText("We Got a Winner Player " + move.get(3) + " Won");
             }
         }
     }
 
+
     public void refresh(){
 
-        for (int i=0; i>=move.size();i++) {
-            move.put(field.getFieldId(), play.getPlayer());
-            System.out.println("now hash" + move);
+
+
+
+                   move.put(1, v1h1.getText());
+                   move.put(2, v1h2.getText());
+                   move.put(3, v1h3.getText());
+                   move.put(4, v2h1.getText());
+                   move.put(5, v2h2.getText());
+                   move.put(6, v2h3.getText());
+                   move.put(7,v3h1.getText());
+                   move.put(8,v3h2.getText());
+                   move.put(9,v3h3.getText());
+                   System.out.println("rrrr" + move);
+
+
         }
-
     }
 
-    }
+
+
 
