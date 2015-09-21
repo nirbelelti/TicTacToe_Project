@@ -11,9 +11,10 @@ import java.util.Scanner;
  */
 public class Sender  {
 
-      //  private static int LISTE_PORT = 9001;
+   //     private static int LISTE_PORT = 9001;
         private static final int SEND_PORT = 9000;
-        private static final String IP = "10.111.176.175";
+   //     private static final String IP = "10.111.176.175";
+
 
 
 
@@ -21,11 +22,10 @@ public class Sender  {
 
     public static void sent(Integer fildSent,String  playerSent) throws Exception {
 
-
-
         String msg = (""+fildSent+"," +playerSent);
 
-        InetAddress IPAddress = InetAddress.getByName(IP);
+        //InetAddress IPAddress = InetAddress.getByName(IP);
+        InetAddress IPAddress = InetAddress.getLocalHost();
 
             DatagramSocket sendSocket = new DatagramSocket();
 
@@ -33,11 +33,6 @@ public class Sender  {
             Thread sendThread = new Thread(() ->
             {
                 byte[] data = new byte[1024];
-
-
-
-            //   while (true) {
-
 
                     data = msg.getBytes();
                     DatagramPacket sendPacket = new DatagramPacket(data, data.length, IPAddress, SEND_PORT);

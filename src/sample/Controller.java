@@ -117,7 +117,7 @@ public class Controller implements Initializable {
 
     public void setMove3(ActionEvent event) {
         field.setFieldId(3);
-        v1h3.setText(play.getPlayer());
+            v1h3.setText(play.getPlayer());
         move.put(field.getFieldId(), play.getPlayer());
         try {
             snt.sent(field.getFieldId(), play.getPlayer());
@@ -396,6 +396,67 @@ public class Controller implements Initializable {
 
 
         }
+
+    public void updateBoard(String message)
+    {
+
+
+        String player = message;
+
+        char a = player.charAt(0);
+        char c = player.charAt(2);
+
+        int v = Character.getNumericValue(a);
+        String p = Character.toString(c);
+
+        System.out.println(v + " , " + p); // checking
+
+        field.setFieldId(v);
+        play.setPlayer(p);
+
+        switch (v){
+            case 1:
+                v1h1.setText(play.getPlayer());
+                break;
+            case 2:
+                v1h2.setText(play.getPlayer());
+                break;
+            case 3:
+                v1h3.setText(play.getPlayer());
+                break;
+            case 4:
+                v2h1.setText(play.getPlayer());
+                break;
+            case 5:
+                v2h2.setText(play.getPlayer());
+                break;
+            case 6:
+                v2h3.setText(play.getPlayer());
+                break;
+            case 7:
+                v3h1.setText(play.getPlayer());
+                break;
+            case 8:
+                v3h2.setText(play.getPlayer());
+                break;
+            case 9:
+                v3h3.setText(play.getPlayer());
+                break;
+        }
+
+        move.put(field.getFieldId(), play.getPlayer());
+
+        refresh();
+        isAWinner();
+
+        //switchPlayers();   NOT SURE ABOUT THAT ONE
+
+    }
+
+
+
+
+
     }
 
 

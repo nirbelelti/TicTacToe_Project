@@ -9,18 +9,16 @@ import java.util.Scanner;
 /**
  * Created by nirbelelti on 16/09/15.
  */
-public class Reciver {
-
-
+public class Reciver  {
 
         private static int LISTE_PORT = 9000;
-      //  private static final int SEND_PORT = 9000;
-        private static final String IP = "10.111.176.175";
+  //      private static final int SEND_PORT = 9000;
+      //  private static final String IP = "10.111.176.175";
+
 
         public static void main(String[] args) throws Exception {
-            InetAddress IPAddress = InetAddress.getByName(IP);
 
-
+            InetAddress IPAddress = InetAddress.getLocalHost();
             DatagramSocket receiveSocket = new DatagramSocket(LISTE_PORT);
 
 
@@ -30,13 +28,16 @@ public class Reciver {
 
                 while (true) {
                     DatagramPacket receivePacket = new DatagramPacket(data, data.length);
+
                     try {
                         receiveSocket.receive(receivePacket);
                         String msg = new String(receivePacket.getData());
                         msg.trim();
                         if(msg.length()>0) {
-                            System.out.println("Received:  " + msg);
 
+                            System.out.println(msg);
+                            new Controller().updateBoard(msg);
+                            //controller.updateBoard(msg);
                             msg = null;
                             data = new byte[10];
 
@@ -63,6 +64,8 @@ public class Reciver {
             receiveThread.start();
 
         }
+
+
 
     }
 
