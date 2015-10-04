@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class Sender  {
 
    //     private static int LISTE_PORT = 9001;
-        private static final int SEND_PORT = 9001;
+        private static final int SEND_PORT = 9000;
    //     private static final String IP = "10.111.176.175";
 
 

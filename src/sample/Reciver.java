@@ -13,7 +13,7 @@ import java.util.Scanner;
  */
 public class Reciver  {
 
-        private static int LISTE_PORT = 9000;
+        private static int LISTE_PORT = 9001;
   //      private static final int SEND_PORT = 9000;
       //  private static final String IP = "10.111.176.175";
 
@@ -38,9 +38,7 @@ public class Reciver  {
                         if(msg.length()>0) {
 
                             System.out.println(msg);
-                            Platform.runLater(() -> {
-                                controller.updateBoard(msg);});
-
+                            Platform.runLater(() -> {controller.updateBoard(msg);});
 
                             data = new byte[10];
 
@@ -54,8 +52,6 @@ public class Reciver  {
 
                   }
             });
-
-
 
             receiveThread.start();
 

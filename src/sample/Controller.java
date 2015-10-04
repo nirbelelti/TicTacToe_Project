@@ -1,16 +1,11 @@
 package sample;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.cell.CheckBoxListCell;
-
-
 
 import java.io.*;
 import java.net.URL;
@@ -421,45 +416,57 @@ public class Controller implements Initializable {
 
         System.out.println("printing objects: " + field.getFieldId() + " , " + play.getPlayer());
 
-
-      switch (p)
-        {
-            case "X":
-            {
-                player1CL.setSelected(true);
-                break;
-            }
-            case "O":
-                player2CL.setSelected(true);
-               break;
-        }
-        
-
         move.put(field.getFieldId(), play.getPlayer());
 
-        v1h1.setText(move.get(1));
-        v1h2.setText(move.get(2));
-        v1h3.setText(move.get(3));
-        v2h1.setText(move.get(4));
-        v2h2.setText(move.get(5));
-        v2h3.setText(move.get(6));
-        v3h1.setText(move.get(7));
-        v3h2.setText(move.get(8));
-        v3h3.setText(move.get(9));
-
-        isAWinner();
+        switch (v) {
+            case 1:
+                v1h1.setText(move.get(1));
+                break;
+            case 2:
+                v1h2.setText(move.get(2));
+                break;
+            case 3:
+                v1h3.setText(move.get(3));
+                break;
+            case 4:
+                v2h1.setText(move.get(4));
+                break;
+            case 5:
+                v2h2.setText(move.get(5));
+                break;
+            case 6:
+                v2h3.setText(move.get(6));
+                break;
+            case 7:
+                v3h1.setText(move.get(7));
+                break;
+            case 8:
+                v3h2.setText(move.get(8));
+                break;
+            case 9:
+                v3h3.setText(move.get(9));
+                break;
+        }
         refresh();
+        isAWinner();
+
+        if(p.equals("X") ) {
+            player2CL.setSelected(true);
+            play.setPlayer("O");
+        }
+
+        if (p.equals("O")){
+            player1CL.setSelected(true);
+            play.setPlayer("X");
+        }
+
+
+
 
 
     }
 
-  /*  public boolean isEmpty ()
-    {
-        if
 
-        return
-    }
-*/
 
 
 
