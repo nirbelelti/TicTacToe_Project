@@ -1,12 +1,15 @@
 package sample;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.cell.CheckBoxListCell;
+
 
 
 import java.io.*;
@@ -37,9 +40,9 @@ public class Controller implements Initializable {
     @FXML
     private Button v3h3;
     @FXML
-    private CheckBox player1CL;
+    private RadioButton player1CL;
     @FXML
-    private CheckBox player2CL;
+    private RadioButton player2CL;
     @FXML
     private Button resetBtn;
     @FXML
@@ -55,17 +58,9 @@ public class Controller implements Initializable {
     Players play = new Players();
     Fields field = new Fields();
     Sender snt = new Sender();
-    Reciver rcv = new Reciver();
+   // Reciver rcv = new Reciver();
 
     Map<Integer, String> move = new HashMap<Integer, String>();
-
-
-    // Added variable sendmove which sends the information about the made move so fieldId to class Network connection
-    // Converted the Integer value of fieldId to String so you could send it. Check class NetworkConnection
-
-
-    String sendmove = field.toString();
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -117,7 +112,7 @@ public class Controller implements Initializable {
 
     public void setMove3(ActionEvent event) {
         field.setFieldId(3);
-            v1h3.setText(play.getPlayer());
+        v1h3.setText(play.getPlayer());
         move.put(field.getFieldId(), play.getPlayer());
         try {
             snt.sent(field.getFieldId(), play.getPlayer());
@@ -229,8 +224,6 @@ public class Controller implements Initializable {
 
         play.setPlayer("X");
 
-       // player2CL.fire();
-
 
     }
 
@@ -244,18 +237,25 @@ public class Controller implements Initializable {
         if (play.getPlayer().equals("X")) {
 
 
-            player1CL.fire();
-            player2CL.fire();
+            player2CL.setSelected(true);
+
+        } else if (play.getPlayer().equals("O")) {
+
+
+            player1CL.setSelected(true);
 
         }
-        else
-        if (play.getPlayer().equals("O")) {
 
-
-            player2CL.fire();
-            player1CL.fire();
-
+        if (player1CL.isSelected()== true)
+        {
+            play.setPlayer("X");
         }
+        else if (player2CL.isSelected()== true)
+        {
+            play.setPlayer("O");
+        }
+
+
 
     }
 
@@ -275,15 +275,15 @@ public class Controller implements Initializable {
             e.printStackTrace();
         }
 
-            v1h1.setText(move.get(1));
-            v1h2.setText(move.get(2));
-            v1h3.setText(move.get(3));
-            v2h1.setText(move.get(4));
-            v2h2.setText(move.get(5));
-            v2h3.setText(move.get(6));
-            v3h1.setText(move.get(7));
-            v3h2.setText(move.get(8));
-            v3h3.setText(move.get(9));
+        v1h1.setText(move.get(1));
+        v1h2.setText(move.get(2));
+        v1h3.setText(move.get(3));
+        v2h1.setText(move.get(4));
+        v2h2.setText(move.get(5));
+        v2h3.setText(move.get(6));
+        v3h1.setText(move.get(7));
+        v3h2.setText(move.get(8));
+        v3h3.setText(move.get(9));
 
         move.put(field.getFieldId(), play.getPlayer());
 
@@ -294,7 +294,8 @@ public class Controller implements Initializable {
 
 
     }
-    public void resetGame(ActionEvent event){
+
+    public void resetGame(ActionEvent event) {
 
         v1h1.setText("");
         v1h2.setText("");
@@ -308,22 +309,22 @@ public class Controller implements Initializable {
         move.clear();
         msg.setText("");
 
-        
+
     }
+
     public void saveToFile(ActionEvent event) {
-        try
-        {
+        try {
             FileOutputStream moveReg = new FileOutputStream("hashMapFile.txt");
             ObjectOutputStream saveGame = new ObjectOutputStream(moveReg);
             saveGame.writeObject(move);
             saveGame.close();
             moveReg.close();
             System.out.println(" Data is saved in file");
-        }catch(IOException ioe)
-        {
+        } catch (IOException ioe) {
             ioe.printStackTrace();
         }
     }
+
     public void isAWinner() {
 
         if (!move.get(1).equals("")) {
@@ -332,43 +333,50 @@ public class Controller implements Initializable {
 
                 msg.setText("We Got a Winner Player " + move.get(1) + " Won");
             }
-        }  if (!move.get(4).equals("")) {
+        }
+        if (!move.get(4).equals("")) {
             if (move.get(4).equals(move.get(5)) && move.get(4).equals(move.get(6))) {
 
 
                 msg.setText("We Got a Winner Player " + move.get(4) + " Won");
             }
-        }  if (!move.get(7).equals("")) {
+        }
+        if (!move.get(7).equals("")) {
             if (move.get(7).equals(move.get(8)) && move.get(7).equals(move.get(9))) {
 
 
                 msg.setText("We Got a Winner Player " + move.get(7) + " Won");
             }
-        }  if (!move.get(1).equals("")) {
+        }
+        if (!move.get(1).equals("")) {
             if (move.get(1).equals(move.get(5)) && move.get(5).equals(move.get(9))) {
 
 
                 msg.setText("We Got a Winner Player " + move.get(1) + " Won");
             }
-        }  if (!move.get(3).equals("")) {
+        }
+        if (!move.get(3).equals("")) {
             if (move.get(3).equals(move.get(5)) && move.get(5).equals(move.get(7))) {
 
 
                 msg.setText("We Got a Winner Player " + move.get(3) + " Won");
             }
-        }  if (!move.get(1).equals("")) {
+        }
+        if (!move.get(1).equals("")) {
             if (move.get(1).equals(move.get(4)) && move.get(4).equals(move.get(7))) {
 
 
                 msg.setText("We Got a Winner Player " + move.get(4) + " Won");
             }
-        }  if (!move.get(2).equals("")) {
+        }
+        if (!move.get(2).equals("")) {
             if (move.get(2).equals(move.get(5)) && move.get(5).equals(move.get(8))) {
 
 
                 msg.setText("We Got a Winner Player " + move.get(2) + " Won");
             }
-        } if (!move.get(3).equals("")) {
+        }
+        if (!move.get(3).equals("")) {
             if (move.get(3).equals(move.get(6)) && move.get(6).equals(move.get(9))) {
 
 
@@ -378,27 +386,26 @@ public class Controller implements Initializable {
     }
 
 
-    public void refresh(){
+    public void refresh() {
+
+
+        move.put(1, v1h1.getText());
+        move.put(2, v1h2.getText());
+        move.put(3, v1h3.getText());
+        move.put(4, v2h1.getText());
+        move.put(5, v2h2.getText());
+        move.put(6, v2h3.getText());
+        move.put(7, v3h1.getText());
+        move.put(8, v3h2.getText());
+        move.put(9, v3h3.getText());
+        System.out.println("rrrr" + move);
 
 
 
 
-                   move.put(1, v1h1.getText());
-                   move.put(2, v1h2.getText());
-                   move.put(3, v1h3.getText());
-                   move.put(4, v2h1.getText());
-                   move.put(5, v2h2.getText());
-                   move.put(6, v2h3.getText());
-                   move.put(7,v3h1.getText());
-                   move.put(8,v3h2.getText());
-                   move.put(9,v3h3.getText());
-                   System.out.println("rrrr" + move);
+    }
 
-
-        }
-
-    public void updateBoard(String message)
-    {
+    public void updateBoard(String message) {
 
 
         String player = message;
@@ -409,55 +416,61 @@ public class Controller implements Initializable {
         int v = Character.getNumericValue(a);
         String p = Character.toString(c);
 
-        System.out.println(v + " , " + p); // checking
-
         field.setFieldId(v);
         play.setPlayer(p);
 
-        switch (v){
-            case 1:
-                v1h1.setText(play.getPlayer());
+        System.out.println("printing objects: " + field.getFieldId() + " , " + play.getPlayer());
+
+
+      switch (p)
+        {
+            case "X":
+            {
+                player1CL.setSelected(true);
                 break;
-            case 2:
-                v1h2.setText(play.getPlayer());
-                break;
-            case 3:
-                v1h3.setText(play.getPlayer());
-                break;
-            case 4:
-                v2h1.setText(play.getPlayer());
-                break;
-            case 5:
-                v2h2.setText(play.getPlayer());
-                break;
-            case 6:
-                v2h3.setText(play.getPlayer());
-                break;
-            case 7:
-                v3h1.setText(play.getPlayer());
-                break;
-            case 8:
-                v3h2.setText(play.getPlayer());
-                break;
-            case 9:
-                v3h3.setText(play.getPlayer());
-                break;
+            }
+            case "O":
+                player2CL.setSelected(true);
+               break;
         }
+        
 
         move.put(field.getFieldId(), play.getPlayer());
 
-        refresh();
+        v1h1.setText(move.get(1));
+        v1h2.setText(move.get(2));
+        v1h3.setText(move.get(3));
+        v2h1.setText(move.get(4));
+        v2h2.setText(move.get(5));
+        v2h3.setText(move.get(6));
+        v3h1.setText(move.get(7));
+        v3h2.setText(move.get(8));
+        v3h3.setText(move.get(9));
+
         isAWinner();
-
-        //switchPlayers();   NOT SURE ABOUT THAT ONE
-
-    }
-
-
-
+        refresh();
 
 
     }
+
+  /*  public boolean isEmpty ()
+    {
+        if
+
+        return
+    }
+*/
+
+
+
+}
+
+
+
+
+
+
+
 
 
 
