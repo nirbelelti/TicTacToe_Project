@@ -13,14 +13,14 @@ import java.util.Scanner;
  */
 public class Reciver  {
 
-        private static int LISTE_PORT = 9001;
+        private static int LISTE_PORT = 9000;
   //      private static final int SEND_PORT = 9000;
       //  private static final String IP = "10.111.176.129";
 
 
         public static void doreciver(Controller controller) throws Exception {
 
-            InetAddress IPAddress = InetAddress.getLocalHost();
+          //  InetAddress IPAddress = InetAddress.getLocalHost();
             DatagramSocket receiveSocket = new DatagramSocket(LISTE_PORT);
 
 
