@@ -303,6 +303,11 @@ public class Controller implements Initializable {
         v3h3.setText("");
         move.clear();
         msg.setText("");
+        try {
+            snt.sent(12, play.getPlayer());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
     }
@@ -421,6 +426,7 @@ public class Controller implements Initializable {
         switch (v) {
             case 1:
                 v1h1.setText(move.get(1));
+                move.put(0,p);
                 break;
             case 2:
                 v1h2.setText(move.get(2));
@@ -446,6 +452,12 @@ public class Controller implements Initializable {
             case 9:
                 v3h3.setText(move.get(9));
                 break;
+         //   case 10:
+          //  case 11:
+            case 11:
+                resetBtn.fire();
+                break;
+
         }
         refresh();
         isAWinner();

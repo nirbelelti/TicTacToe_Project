@@ -13,7 +13,7 @@ public class Sender  {
 
    //     private static int LISTE_PORT = 9001;
         private static final int SEND_PORT = 9000;
-   //     private static final String IP = "10.111.176.175";
+        private static final String IP = "10.111.180.161";
 
 
 
@@ -24,8 +24,8 @@ public class Sender  {
 
         String msg = (""+fildSent+"," +playerSent);
 
-        //InetAddress IPAddress = InetAddress.getByName(IP);
-        InetAddress IPAddress = InetAddress.getLocalHost();
+        InetAddress IPAddress = InetAddress.getByName(IP);
+        //InetAddress IPAddress = InetAddress.getLocalHost();
 
             DatagramSocket sendSocket = new DatagramSocket();
 
