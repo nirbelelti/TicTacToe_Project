@@ -24,8 +24,8 @@ public class Sender  {
 
         String msg = (""+fildSent+"," +playerSent);
 
-        InetAddress IPAddress = InetAddress.getByName(IP);
-      //  InetAddress IPAddress = InetAddress.getLocalHost();
+       // InetAddress IPAddress = InetAddress.getByName(IP);
+       InetAddress IPAddress = InetAddress.getLocalHost();
 
             DatagramSocket sendSocket = new DatagramSocket();
 
