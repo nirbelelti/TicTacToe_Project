@@ -292,7 +292,7 @@ public class Controller implements Initializable {
 
     }
 
-    public void uploadgame(String lastmove) {
+    public void uploadgame(String nextmove) {
 
         HashMap<Integer, String> move = null;
         try {
@@ -325,12 +325,12 @@ public class Controller implements Initializable {
 
         System.out.println(move);
 
-        if (lastmove.equals("X")) {
+        if (nextmove.equals("X")) {
             player1CL.setSelected(true);
             play.setPlayer("X");
         }
 
-        if (lastmove.equals("O")) {
+        if (nextmove.equals("O")) {
             player2CL.setSelected(true);
             play.setPlayer("O");
         }
@@ -409,7 +409,7 @@ public class Controller implements Initializable {
     }
 
     public void saveToFile() {
-        //    move.put(0, play.getPlayer());   // next move to be made after upload
+            move.put(0, play.getPlayer());   // next move to be made after upload
 
         try {
             FileOutputStream moveReg = new FileOutputStream("hashMapFile.txt");
@@ -422,6 +422,15 @@ public class Controller implements Initializable {
             ioe.printStackTrace();
         }
 
+     /*   if (move.get(0).equals("X")) {
+            player2CL.setSelected(true);
+            play.setPlayer("O");
+        }
+
+        if (move.get(0).equals("O")) {
+            player1CL.setSelected(true);
+            play.setPlayer("X");
+        }   */
 
     }
 
